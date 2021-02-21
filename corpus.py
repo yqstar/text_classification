@@ -5,14 +5,14 @@ from collections import Counter
 
 
 class CorpusDict(object):
-    def __init__(self, corpus_path, stopwords_path, sp_words=["unk", "pad", "num"]):
+    def __init__(self, corpus_path, stopwords_path, special_words_lst):
         self.corpus_path = corpus_path
         self.stopwords_path = stopwords_path
         self.corpus = pd.read_csv(corpus_path)
-        self.word2freq = Counter(sp_words)
+        self.word2freq = Counter(special_words_lst)
         self.idx2word = list(self.word2freq.keys())
         self.word2idx = {word: idx for idx, word in enumerate(self.idx2word)}
-        self.length = len(sp_words)
+        self.length = len(special_words_lst)
 
     def __len__(self):
         return len(self.idx2word)
@@ -69,31 +69,3 @@ class CorpusDict(object):
 
     def remove_stopwords(self):
         pass
-
-
-
-    # @staticmethod
-    # def build_dict(self, corpus, min_frequency=5):
-    #     # 语料库构建词频
-    #     word_frequency = dict(Counter(corpus))
-    #     word2idx = {word: idx for idx, word in enumerate(word_frequency.keys())}
-    #     word2idx['unk'] = len(word2idx)
-    #     word2idx['pad'] = len(word2idx)
-    #     idx2word = {idx: word for word, idx in word2idx.items()}
-    #     # 字典保存到本地
-    #     with open("dict.txt", 'w', encoding='utf-8') as f:
-    #         f.write(str(word2idx))
-    #     return word2idx, idx2word
-
-    # @staticmethod
-    # def text_vector(text, word2idx, max_length):
-    #     return [word2idx[i] for i in list(text)][0:max_length]
-
-
-# if __name__ == '__main__':
-#     text = pd.read_csv("data/all_data.tsv", sep="\t")
-#     corpus = ''
-#     for item in text.text:
-#         corpus += item
-#     word2idx, idx2word = build_dict(corpus)
-

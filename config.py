@@ -1,10 +1,11 @@
 class CorpusConfig(object):
     # the path of corpus
     corpus_path = "/data/all_data.tsv"
+    stopwords_path = "/data/all_data.tsv"
+    vocab_path = "/data/dict.txt"
     vocab_max_size = 20000
     vocab_min_frequency = 5
-    vocab_dict = "/data/dict.txt"
-    sp_words_list = ["unk", "pad", "num"]
+    special_words_lst = ["unk", "pad", "num"]
 
 
 class DatasetConfig(object):
